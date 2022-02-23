@@ -1,6 +1,18 @@
-
 const dataPokemon={
-  
+  //EN PROCESP
+  /*sortData:(data, sortBy, sortOrder)=>{
+    let pokemon=data.slice(0);
+    let sortElement = sortBy
+    let sortData=[];
+    sortData= pokemon.sort((a,b)=>{
+    if(a.sortElement>b.sortElement){
+      return 1   
+    }
+    return-1
+      })
+    return sortData
+  },*/
+
   byName:(data)=>{
     let pokemon=data.pokemon.slice(0);
     let byName=[];
@@ -10,7 +22,7 @@ const dataPokemon={
     }
     return-1
       })
-    return byName
+    return byName;
   },
 
   byNumber:(data)=>{
@@ -35,24 +47,52 @@ const dataPokemon={
     return pokemonTypesObject;
   },
 
-  pokemonResistant : (filterResistant, data)=>{
-    let arrayResistant=[];
+  pokemonResistant:( data)=>{
     let pokemon= data.pokemon;
- 
+    let pokemonResistantObject= {}; 
+   
+    
     for(let i=0; i<pokemon.length; i++){
       let resistant=pokemon[i].resistant;
     
-      for(let j=0; j<resistant.length; j++){
-      if(resistant[j]== filterResistant)
-      arrayResistant.push(pokemon[i]);
-      }
     
-  
-    return arrayResistant;
+      for(let j=0; j<resistant.length; j++){
+        let resistantPokemon=resistant[j];
+       
+      if(!Object.prototype.hasOwnProperty.call(pokemonResistantObject, resistantPokemon)){
+        pokemonResistantObject[resistantPokemon]=[];
+      }
+     pokemonResistantObject[resistantPokemon].push(pokemon[i])
+      }
     }
+      
+    return pokemonResistantObject;
+    
   },
 
 
+  pokemonWeaknesses:( data)=>{
+    let pokemon= data.pokemon;
+    let pokemonWeaknessestObject= {}; 
+   
+    
+    for(let i=0; i<pokemon.length; i++){
+      let weaknesses=pokemon[i].weaknesses;
+    
+    
+      for(let j=0; j<weaknesses.length; j++){
+        let weaknessesPokemon=weaknesses[j];
+       
+      if(!Object.prototype.hasOwnProperty.call(pokemonWeaknessestObject, weaknessesPokemon)){
+        pokemonWeaknessestObject[weaknessesPokemon]=[];
+      }
+     pokemonWeaknessestObject[weaknessesPokemon].push(pokemon[i])
+      }
+    }
+      
+    return pokemonWeaknessestObject;
+    
+  },
 
 
 };
